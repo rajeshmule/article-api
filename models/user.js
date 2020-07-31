@@ -40,6 +40,14 @@ userSchema.methods.verifyPassword = async function (password, next) {
   }
 };
 
+userSchema.methods.format = function () {
+  return {
+    id: this._id,
+    email: this.email,
+    name: this.name,
+  };
+};
+
 const User = model("User", userSchema);
 
 module.exports = User;
