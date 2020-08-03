@@ -33,7 +33,6 @@ exports.loginUser = async (req, res, next) => {
       return res.status(401).json({ message: "Invalid password" });
     }
     var token = await auth.generateJwt(currentUser, next);
-    console.log(token);
     res.json({ user: currentUser.format(), token });
   } catch (error) {
     next(error);

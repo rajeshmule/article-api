@@ -6,4 +6,4 @@
 4. install bcryptjs module for hash password for save to database.
 5. make a route and controller for user registerUser.
 6. Make a utils/jwtAuth.js and install jsonwebtoken module for sending a jwt token to the client.
-7. Make route admin for register an admin user.
+7. Make route admin for register an admin user. 
