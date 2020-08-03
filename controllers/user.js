@@ -39,3 +39,20 @@ exports.loginUser = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.registerUserAsAdmin = async (req, res, next) => {
+  try {
+    let newAdminUser = req.body.user;
+    if (!newAdminUser) {
+      return res.status(400).json({ message: "Invalid Credentials" });
+    }
+    if (!isValidUser(newAdminUser)) {
+      return res.status(400).json({ message: "Wrong Input" });
+    }
+    newAdminUser.isAdmin = true;
+    const user = await User.create(newAdminUser);
+    res.json({ user: user.format() });
+  } catch (error) {
+    next(error);
+  }
+};
