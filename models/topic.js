@@ -8,6 +8,7 @@ const topicSchema = new Schema(
       unique: true,
     },
     image: { type: String },
+    articles: [{ type: Schema.Types.ObjectId, ref: "Article" }],
   },
   { timestamps: true }
 );
