@@ -2,6 +2,7 @@ const Topic = require("../models/topic");
 
 exports.createTopic = async (req, res, next) => {
   try {
+    const url = req.protocol + "://" + req.get("host");
     const imageUrl = url + /uploads/ + req.file.filename;
     if (req.admin) {
       if (!req.body.name) {
@@ -31,7 +32,7 @@ exports.showTopics = async (req, res, next) => {
 
 exports.showTopic = async (req, res, next) => {
   try {
-    const topic = await Topic.findById(req.params.id);
+    const topic = await Topic.findById(req.params.id).populate("articles");
     res.json({ topic });
   } catch (error) {
     next(error);
