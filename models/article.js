@@ -21,6 +21,14 @@ const articleSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Topic",
     },
+    isFeatured: {
+      type: Boolean,
+      default: false,
+    },
+    fetcheCount: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

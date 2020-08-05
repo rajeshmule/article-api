@@ -20,8 +20,12 @@ exports.createArticle = async (req, res, next) => {
         image: imageUrl,
         content: req.body.content,
         topicId: req.body.topicId,
+        isFeatured: req.body.isFeatured,
       });
+
       topic.articles.push(article._id);
+
+      topic.save();
 
       res.json({ article });
     } else {
@@ -60,6 +64,16 @@ exports.updateArticle = async (req, res, next) => {
     } else {
       res.status(400).json({ message: "you are not create a article." });
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.showArticle = async (req, res, next) => {
+  try {
+    var articleId = req.params.id;
+    const article = await Article.findById(articleId);
+    res.json({ article });
   } catch (error) {
     next(error);
   }
